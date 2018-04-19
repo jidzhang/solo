@@ -158,35 +158,36 @@ public class BlogProcessor {
      */
     @RequestProcessing(value = "/blog/symphony/user", method = HTTPRequestMethod.GET)
     public void syncUser(final HTTPRequestContext context) throws Exception {
-        final JSONRenderer renderer = new JSONRenderer();
-        context.setRenderer(renderer);
-        final JSONObject jsonObject = new JSONObject();
-        renderer.setJSONObject(jsonObject);
-
-        if (Latkes.getServePath().contains("localhost")) {
-            return;
-        }
-
-        final JSONObject preference = preferenceQueryService.getPreference();
-        if (null == preference) {
-            return; // not init yet
-        }
-
-        final HTTPRequest httpRequest = new HTTPRequest();
-        httpRequest.setURL(new URL(Solos.B3LOG_SYMPHONY_SERVE_PATH + "/apis/user"));
-        httpRequest.setRequestMethod(HTTPRequestMethod.POST);
-        final JSONObject requestJSONObject = new JSONObject();
-
-        final JSONObject admin = userQueryService.getAdmin();
-        requestJSONObject.put(User.USER_NAME, admin.getString(User.USER_NAME));
-        requestJSONObject.put(User.USER_EMAIL, admin.getString(User.USER_EMAIL));
-        requestJSONObject.put(User.USER_PASSWORD, admin.getString(User.USER_PASSWORD));
-        requestJSONObject.put("userB3Key", preference.optString(Option.ID_C_KEY_OF_SOLO));
-        requestJSONObject.put("clientHost", Latkes.getServePath());
-
-        httpRequest.setPayload(requestJSONObject.toString().getBytes("UTF-8"));
-
-        urlFetchService.fetchAsync(httpRequest);
+        return;
+//        final JSONRenderer renderer = new JSONRenderer();
+//        context.setRenderer(renderer);
+//        final JSONObject jsonObject = new JSONObject();
+//        renderer.setJSONObject(jsonObject);
+//
+//        if (Latkes.getServePath().contains("localhost")) {
+//            return;
+//        }
+//
+//        final JSONObject preference = preferenceQueryService.getPreference();
+//        if (null == preference) {
+//            return; // not init yet
+//        }
+//
+//        final HTTPRequest httpRequest = new HTTPRequest();
+//        httpRequest.setURL(new URL(Solos.B3LOG_SYMPHONY_SERVE_PATH + "/apis/user"));
+//        httpRequest.setRequestMethod(HTTPRequestMethod.POST);
+//        final JSONObject requestJSONObject = new JSONObject();
+//
+//        final JSONObject admin = userQueryService.getAdmin();
+//        requestJSONObject.put(User.USER_NAME, admin.getString(User.USER_NAME));
+//        requestJSONObject.put(User.USER_EMAIL, admin.getString(User.USER_EMAIL));
+//        requestJSONObject.put(User.USER_PASSWORD, admin.getString(User.USER_PASSWORD));
+//        requestJSONObject.put("userB3Key", preference.optString(Option.ID_C_KEY_OF_SOLO));
+//        requestJSONObject.put("clientHost", Latkes.getServePath());
+//
+//        httpRequest.setPayload(requestJSONObject.toString().getBytes("UTF-8"));
+//
+//        urlFetchService.fetchAsync(httpRequest);
     }
 
     /**

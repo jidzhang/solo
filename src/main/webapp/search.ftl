@@ -83,7 +83,7 @@
         </#if>
     </nav>
 <#else>
-No Result, Return to <a href="${servePath}">Index</a> or <a href="https://hacpai.com">HacPai</a>.
+No Result, Return to <a href="${servePath}">Index</a>.
 </#if>
 </div>
 

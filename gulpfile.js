@@ -55,4 +55,19 @@ gulp.task('default', function () {
             .pipe(concat('admin-lib.min.js'))
             .pipe(gulp.dest('./src/main/webapp/js/lib/compress/'));
 
+    gulp.src('./src/main/webapp/js/common.js')
+        .pipe(uglify())
+        .pipe(concat('common.min.js'))
+        .pipe(gulp.dest('././src/main/webapp/js/'));
+
+    gulp.src('./src/main/webapp/js/page.js')
+        .pipe(uglify())
+        .pipe(concat('page.min.js'))
+        .pipe(gulp.dest('././src/main/webapp/js/'));
+
+    gulp.src('./src/main/webapp/js/admin/latkeAdmin.js')
+        .pipe(uglify())
+        .pipe(concat('latkeAdmin.min.js'))
+        .pipe(gulp.dest('././src/main/webapp/js/admin/'));
+
 });

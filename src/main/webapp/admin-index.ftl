@@ -22,7 +22,7 @@
         <div id="allPanel">
             <div id="top">
                 <a href="${servePath}" target="_blank" class="hover">
-                    Solo
+                    ${blogTitle}
                 </a>
                 <span class="icon-unordered-list top__menu none"
                       onclick="admin.toggleMenu()"></span>
@@ -145,7 +145,7 @@
             </div>
             <div class="clear"></div>
             <div class="footer">
-                Powered by <a href="https://b3log.org" target="_blank">B3log 开源</a> • <a href="https://hacpai.com/tag/Solo" target="_blank">Solo</a> ${version}
+                Powered by <a href="https://b3log.org" target="_blank">B3log 开源</a> • Solo ${version}
             </div>
         </div>
         <script src="${staticServePath}/js/lib/compress/admin-lib.min.js"></script>

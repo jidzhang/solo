@@ -3,9 +3,7 @@
 <@commonPage "${welcomeToSoloLabel}!">
 <h2>
     <span>${welcomeToSoloLabel}</span>
-    <a target="_blank" href="https://b3log.org">
-        <span class="solo">&nbsp;Solo</span>
-    </a>
+    <span class="solo">&nbsp;Solo</span>
 </h2>
 <div id="init">
     <div id="user" class="form">

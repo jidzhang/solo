@@ -33,6 +33,7 @@ var Util = {
   parseMarkdown: function (className) {
     var hasMathJax = false;
     var hasFlow = false;
+    var hasSequence = false;
     var className = className || 'article-body';
     $('.' + className).each(function () {
       $(this).find('p').each(function () {
@@ -42,6 +43,9 @@ var Util = {
       });
       if ($(this).find('code.lang-flow, code.language-flow').length > 0) {
         hasFlow = true
+      }
+      if ($(this).find('code.lang-sequence, code.language-sequence').length > 0) {
+        hasSequence = true
       }
     });
 
@@ -96,10 +100,40 @@ var Util = {
           dataType: "script",
           cache: true
         }).done(function () {
-          initFlow()
+          initFlow();
         });
       }
     }
+
+      if (hasSequence) {
+          var initSequence = function () {
+              $('.' + className + ' code.lang-sequence, .' + className + ' code.language-sequence').each(function (index) {
+                  var $it = $(this);
+                  var id = 'symSequence' + (new Date()).getTime() + index;
+                  $it.hide();
+                  var diagram = Diagram.parse($.trim($it.text()));
+                  $it.parent().after('<div style="text-align: center" id="' + id + '"></div>')
+                  diagram.drawSVG(id, {theme: 'simple'});
+                  $it.parent().remove();
+                  $('#' + id).find('svg').height('auto').width('auto');
+              });
+          };
+
+          if (typeof (Diagram) !== 'undefined') {
+              initSequence();
+          } else {
+              $.ajax({
+                  method: "GET",
+                  url: latkeConfig.staticServePath + '/js/lib/sequence/sequence-diagram-min.js',
+                  dataType: "script",
+                  cache: true
+              }).done(function () {
+                  initSequence();
+              }).error(function () {
+                  console.log('sequence load error!');
+              });
+          }
+      }
   },
   /**
    * @description 是否登录
@@ -327,6 +361,14 @@ var Util = {
       return window.document.documentElement.clientHeight;
     }
     return window.document.body.clientHeight;
+  },
+    /**
+     * 给字符串内部的单引号和双引号添加转义字符
+     * @param str
+     * @returns 转义之后的字符串
+     */
+  addslashes: function (str) {
+    return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
   }
 };
 if (!Cookie) {

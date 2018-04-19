@@ -108,19 +108,17 @@ public final class Starter {
         final boolean isWindows = System.getProperty("os.name").toLowerCase().contains("windows");
         final String cmdSyntax = isWindows ? "java -cp \"WEB-INF/lib/*;WEB-INF/classes\" org.b3log.solo.Starter"
                 : "java -cp \"WEB-INF/lib/*:WEB-INF/classes\" org.b3log.solo.Starter";
-        final String header = "\nSolo is a blogging system written in Java, feel free to create your or your team own blog.\nSolo 是一个用 Java 实现的博客系统，为你或你的团队创建个博客吧。\n\n";
+        final String header = "\nSolo is a blogging system written in Java, feel free to create your or your team's blog.\nSolo 是一个用 Java 实现的博客系统，为你或你的团队创建个博客吧。\n\n";
         final String footer = "\nReport bugs or request features please visit our project website: https://github.com/b3log/solo\n\n";
         try {
             commandLine = commandLineParser.parse(options, args);
         } catch (final ParseException e) {
             helpFormatter.printHelp(cmdSyntax, header, options, footer, true);
-
             return;
         }
 
         if (commandLine.hasOption("h")) {
             helpFormatter.printHelp(cmdSyntax, header, options, footer, true);
-
             return;
         }
 
@@ -168,7 +166,6 @@ public final class Starter {
             server.start();
         } catch (final Exception e) {
             logger.log(Level.ERROR, "Server start failed", e);
-
             System.exit(-1);
         }
 
@@ -190,7 +187,6 @@ public final class Starter {
                 server.stop();
             } catch (final Exception e) {
                 logger.log(Level.ERROR, "Server stop failed", e);
-
                 System.exit(-1);
             }
         }));

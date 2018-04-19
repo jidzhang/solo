@@ -112,7 +112,6 @@
 <div class="article__bottom">
     <div class="wrapper">
         <div class="fn-flex footer__tag">
-            <div class="fn-flex-1" id="externalRelevantArticles"></div>
             <div class="fn-flex-1" id="relevantArticles"></div>
             <div class="fn-flex-1" id="randomArticles"></div>
         </div>

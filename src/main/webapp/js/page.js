@@ -495,43 +495,7 @@ $.extend(Page.prototype, {
    * @param {String} headTitle 站外相关文章标题
    */
   loadExternalRelevantArticles: function (tags, headTitle) {
-    var tips = this.tips;
-    try {
-      $.ajax({
-        url: "https://rhythm.b3log.org/get-articles-by-tags.do?tags=" + tags
-        + "&blogHost=" + tips.blogHost + "&paginationPageSize=" + tips.externalRelevantArticlesDisplayCount,
-        type: "GET",
-        cache: true,
-        dataType: "jsonp",
-        error: function () {
-          $("#externalRelevantArticles").remove();
-        },
-        success: function (data, textStatus) {
-          var articles = data.articles;
-          if (!articles || 0 === articles.length) {
-            $("#externalRelevantArticles").remove();
-            return;
-          }
-          var listHtml = "";
-          for (var i = 0; i < articles.length; i++) {
-            var article = articles[i];
-            var title = article.articleTitle;
-            var articleLiHtml = "<li>"
-              + "<a rel='nofollow' title='" + title + "' target='_blank' href='" + article.articlePermalink + "'>"
-              + title + "</a></li>"
-            listHtml += articleLiHtml
-          }
 
-          var titleHTML = headTitle ? headTitle : "<h4>" + tips.externalRelevantArticles1Label + "</h4>";
-          var randomArticleListHtml = titleHTML
-            + "<ul class='marginLeft12'>"
-            + listHtml + "</ul>";
-          $("#externalRelevantArticles").append(randomArticleListHtml);
-        }
-      });
-    } catch (e) {
-      // 忽略相关文章加载异常：load script error
-    }
   },
   /*
    * @description 提交评论

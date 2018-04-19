@@ -24,24 +24,7 @@
 /* about 相关操作 */
 admin.about = {
     init: function() {
-        $.ajax({
-            url: "https://rhythm.b3log.org/version/solo/latest/" + Label.version,
-            type: "GET",
-            cache: false,
-            dataType: "jsonp",
-            success: function(data, textStatus) {
-                var version = data.soloVersion;
-                if (version === Label.version) {
-                    $("#aboutLatest").text(Label.upToDateLabel);
-                } else {
-                    $("#aboutLatest").html(Label.outOfDateLabel +
-                            "<a href='" + data.soloDownload + "'>" + version + "</a>");
-                }
-            },
-            complete: function(XHR, TS) {
-                admin.clearTip();
-            }
-        });
+        $("#loadMsg").text("");
     }
 };
 
