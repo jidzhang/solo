@@ -233,15 +233,18 @@ public final class Markdowns {
         final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
 
-        String ret;
-        try (final OutputStream outputStream = conn.getOutputStream(); final InputStream inputStream = conn.getInputStream()) {
+        try (final OutputStream outputStream = conn.getOutputStream()) {
             IOUtils.write(markdownText, outputStream, "UTF-8");
-            ret = IOUtils.toString(inputStream, "UTF-8");
         }
 
-        //conn.disconnect();
+        String html;
+        try (final InputStream inputStream = conn.getInputStream()) {
+            html = IOUtils.toString(inputStream, "UTF-8");
+        }
 
-        return ret;
+        conn.disconnect();
+
+        return html;
     }
 
     /**

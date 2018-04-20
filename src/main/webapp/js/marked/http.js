@@ -61,10 +61,9 @@ var server = http.createServer(function (request, response) {
 
     request.on('end', function () {
         response.write(marked(mdContent));
-
         response.end();
     });
 });
 
 server.listen(PORT);
-console.log("Marked engine is running at port: " + PORT);
+console.log(marked("Marked engine is running at port: " + PORT));
